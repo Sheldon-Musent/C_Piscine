@@ -1,0 +1,44 @@
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+		ft_putnbr(nb / 10);
+	ft_putchar('0' + nb % 10);
+}
+
+int	ft_iterative_power(int nb, int power)
+{
+	int	result;
+
+	if (power < 0)
+		return (0);
+	result = 1;
+	while (power > 0)
+	{
+		result = result * nb;
+		power--;
+	}
+	return (result);
+}
+
+int	main(void)
+{
+	ft_putnbr(ft_iterative_power(2, 10));
+	write(1, "\n", 1);
+	ft_putnbr(ft_iterative_power(5, 0));
+	write(1, "\n", 1);
+	ft_putnbr(ft_iterative_power(3, -2));
+	write(1, "\n", 1);
+	return (0);
+}
